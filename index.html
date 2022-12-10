@@ -1,1 +1,70 @@
-Hello
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script>
+            window.onload=function() {
+                const btn = document.getElementById("btn")
+                const upgradeBtn1 = document.getElementById("upgrade")
+                const upgradeBtn2 = document.getElementById("automate")
+                var automated = false
+                var value = 0
+                var incr = 1
+            
+                btn.addEventListener("click", add)
+                upgradeBtn1.addEventListener("click", upgrade1)
+                upgradeBtn2.addEventListener("click", upgrade2)
+
+                function add() {
+                value = value + incr
+                document.getElementById("pts").innerHTML = `You have ${value} points`
+                }
+
+                function upgrade1() {
+                    if (value - 20 >= 0) {
+                        value = value - 20
+                        document.getElementById("pts").innerHTML = `You have ${value} points`
+                        incr = incr + 1
+                    }
+                }
+
+                function upgrade2() {
+                    automated = true
+                }
+
+                while (automated) {
+                    add()
+                    document.getElementById("pts").innerHTML = `You have ${value} points`
+                    // waits 1 second
+
+                }
+            }
+        </script>
+        <style>
+            div {
+                width: 100px;
+                height: 100px;
+                border: 4px black;
+                background-color: lightsteelblue;
+                cursor: pointer;
+                padding-left: 30px;
+                padding-right: 30px;
+                padding-top: 30px;
+                font-size: 24px;
+                margin: 8px;
+            }
+            p {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="btn">
+            Click this
+        </div>
+        <div id="upgrade">The Upgrade</div>
+        <div id="automate">Automator</div>
+        <p id="pts">0</p>
+    </body>
+</html>
