@@ -18,7 +18,6 @@
                 var value = 0
                 var incr = 1
                 var upgrade1cost = 20
-                let gameloop = true
             
                     //event listener settings
 
@@ -63,12 +62,13 @@
 
                     //main loop
 
-                sleep(3000)
-                while (gameloop) {
-                    update()
-                    sleep(50)
+                window.requestAnimationFrame(gameLoop)
+
+                function gameLoop() {
+                        update()
+                        window.requestAnimationFrame(gameLoop)
                 }
-            }
+            } 
         </script>
         <style>
 
