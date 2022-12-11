@@ -50,10 +50,10 @@
                 }
 
                 function upgrade1() {  //upgrade function
-                    if (value - 20 >= 0) {
-                        value = value - 20
+                    if (value - upgrade1cost >= 0) {
+                        value = value - upgrade1cost
                         incr = incr + 1
-                        upgrade1cost = upgrade1cost * 1.5
+                        upgrade1cost = upgrade1cost + 10
                         update()
                     }
                 }
