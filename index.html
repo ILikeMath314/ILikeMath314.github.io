@@ -3,28 +3,57 @@
     <head>
         <meta charset="utf-8">
         <script>
+
+                //things to do when loaded
+
             window.onload=function() {
-                const btn = document.getElementById("btn")
-                const upgradeBtn1 = document.getElementById("upgrade")
+
+
+                    //sets all the variables
+                
+                const btn = document.getElementById("btn")              
+                const upgradeBtn1 = document.getElementById("upgrade")  
                 const upgradeBtn2 = document.getElementById("automate")
                 var automated = false
                 var value = 0
                 var incr = 1
+                var upgrade1cost = 20
+                let gameloop = true
             
+                    //event listener settings
+
                 btn.addEventListener("click", add)
                 upgradeBtn1.addEventListener("click", upgrade1)
                 upgradeBtn2.addEventListener("click", upgrade2)
+                    
+                    //Basic functions
 
-                function add() {
-                value = value + incr
-                document.getElementById("pts").innerHTML = `You have ${value} points`
+                function sleep(ms) {
+                    return new Promise(resolve => setTimeout(resolve, ms));
                 }
 
-                function upgrade1() {
+                function update() {  //updates the html
+                    document.getElementById("upgrade").innerHTML = `More points per click, Cost:${upgrade1cost} pts`
+                    document.getElementById("pts").innerHTML = `You have ${value} points`
+                    if (automated) {
+                        add(true)
+                    }
+                }
+
+                    //game functions
+
+                function add(automode = false) {  //adds points
+                    value = value + incr
+                    if (automode) {  //check if it is auto mode for auto mode adding
+                        value = value + Math.round(incr/5)
+                    }
+                }
+
+                function upgrade1() {  //upgrade function
                     if (value - 20 >= 0) {
                         value = value - 20
-                        document.getElementById("pts").innerHTML = `You have ${value} points`
                         incr = incr + 1
+                        upgrade1cost = upgrade1cost * 1.5
                     }
                 }
 
@@ -32,18 +61,20 @@
                     automated = true
                 }
 
-                while (automated) {
-                    setTimeout(function() {
-                        add()
-                        document.getElementById("pts").innerHTML = `You have ${value} points`
-                    }, 1)
+                    //main loop
 
+                while (gameloop) {
+                    update()
+                    sleep(50)
                 }
             }
         </script>
         <style>
+
+                /*style for button*/
+
             div {
-                width: 100px;
+                width: 280px;
                 height: 100px;
                 border: 4px black;
                 background-color: lightsteelblue;
@@ -55,6 +86,9 @@
                 margin: 8px;
                 font-family: 'Courier New', Courier, monospace;
             }
+
+                /*normal param style*/
+
             p {
                 font-family: Arial, Helvetica, sans-serif;
                 font-size: 50px;
@@ -65,8 +99,11 @@
         <div id="btn">
             Click this
         </div>
-        <div id="upgrade">The Upgrade</div>
+        <div id="upgrade">More Points Per Click, Cost:20 pts</div>
         <div id="automate">Automator</div>
-        <p id="pts">0</p>
+        <p id="pts">You Have 0 Points</p>
+        <p>My First Game</p>
+        <p>
+        </p>
     </body>
 </html>
