@@ -46,6 +46,7 @@
                     if (automode) {  //check if it is auto mode for auto mode adding
                         value = value + Math.round(incr/5)
                     }
+                    update()
                 }
 
                 function upgrade1() {  //upgrade function
@@ -53,21 +54,12 @@
                         value = value - 20
                         incr = incr + 1
                         upgrade1cost = upgrade1cost * 1.5
+                        update()
                     }
                 }
 
                 function upgrade2() {
                     automated = true
-                }
-
-                    //main loop
-
-                window.requestAnimationFrame(gameLoop)
-
-                function gameLoop() {
-                        update()
-                        sleep(1000/60)
-                        window.requestAnimationFrame(gameLoop)
                 }
             } 
         </script>
