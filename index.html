@@ -34,9 +34,6 @@
                 function update() {  //updates the html
                     document.getElementById("upgrade").innerHTML = `More points per click, Cost:${upgrade1cost} pts`
                     document.getElementById("pts").innerHTML = `You have ${value} points`
-                    if (automated) {
-                        add(true)
-                    }
                 }
 
                     //game functions
@@ -61,7 +58,9 @@
                 function upgrade2() {
                     automated = true
                 }
-            } 
+                
+                setInterval(update, 33)
+             } 
         </script>
         <style>
 
