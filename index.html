@@ -40,10 +40,6 @@
 
                 function add(automode = false) {  //adds points
                     value = value + incr
-                    if (automode) {  //check if it is auto mode for auto mode adding
-                        value = value + Math.round(incr/5)
-                    }
-                    update()
                 }
 
                 function upgrade1() {  //upgrade function
@@ -51,7 +47,6 @@
                         value = value - upgrade1cost
                         incr = incr + 1
                         upgrade1cost = upgrade1cost + 10
-                        update()
                     }
                 }
 
