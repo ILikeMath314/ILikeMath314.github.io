@@ -35,9 +35,9 @@
                     //Updating
 
                 function update() {  //updates the html
-                    document.getElementById("upgrade").innerHTML = `More points per click, Cost:${upgrade1cost} pts`
-                    document.getElementById("auto-upgrade").innerHTML = `More points per second, Cost:${upgradeAutoCost} points`
-                    document.getElementById("pts").innerHTML = `You have ${value} points`
+                    document.getElementById("upgrade").innerHTML = `More points per click, Cost:${Math.round(upgrade1cost)} pts`
+                    document.getElementById("auto-upgrade").innerHTML = `More points per second, Cost:${Math.round(upgradeAutoCost)} points`
+                    document.getElementById("pts").innerHTML = `You have ${Math.round(value)} points`
                     if (automode) {
                         value = value + autoincr/30
                     }
@@ -48,7 +48,6 @@
                 function add() {  //adds points
                     value = value + incr
                 }
-
                 function morePoints() {  //upgrade function
                     if (value - upgrade1cost >= 0) {
                         value = value - upgrade1cost
@@ -73,7 +72,7 @@
                 }
                 
                 setInterval(update, 33.333)
-             } 
+            } 
         </script>
         <style>
             
