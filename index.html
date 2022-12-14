@@ -8,57 +8,78 @@
 
             window.onload=function() {
 
-
                     //sets all the variables
+                    //buttons
                 
                 const btn = document.getElementById("btn")              
-                const upgradeBtn1 = document.getElementById("upgrade")  
-                const upgradeBtn2 = document.getElementById("automate")
-                var automated = false
+                const upgrade1Btn = document.getElementById("upgrade")  
+                const automateBtn = document.getElementById("automate")
+                const autoUpgradeBtn = document.getElementById("auto-upgrade")
+
+                    //game settings
+
+                var automode = false
                 var value = 0
                 var incr = 1
+                var autoincr = 2
                 var upgrade1cost = 20
+                var upgradeAutoCost = 600 
             
                     //event listener settings
 
                 btn.addEventListener("click", add)
-                upgradeBtn1.addEventListener("click", upgrade1)
-                upgradeBtn2.addEventListener("click", upgrade2)
-                    
-                    //Basic functions
-
-                function sleep(ms) {
-                    return new Promise(resolve => setTimeout(resolve, ms));
-                }
+                upgrade1Btn.addEventListener("click", morePoints)
+                automateBtn.addEventListener("click", unlockAuto)
+                autoUpgradeBtn.addEventListener("click", morePPS)
+                                           
+                    //Updating
 
                 function update() {  //updates the html
                     document.getElementById("upgrade").innerHTML = `More points per click, Cost:${upgrade1cost} pts`
+                    document.getElementById("auto-upgrade").innerHTML = `More points per second, Cost:${upgradeAutoCost} points`
                     document.getElementById("pts").innerHTML = `You have ${value} points`
+                    if (automode) {
+                        value = value + autoincr/30
+                    }
                 }
 
                     //game functions
 
-                function add(automode = false) {  //adds points
+                function add() {  //adds points
                     value = value + incr
                 }
 
-                function upgrade1() {  //upgrade function
+                function morePoints() {  //upgrade function
                     if (value - upgrade1cost >= 0) {
                         value = value - upgrade1cost
                         incr = incr + 1
-                        upgrade1cost = upgrade1cost + 10
+                        upgrade1cost = upgrade1cost * 1.1
                     }
                 }
 
-                function upgrade2() {
-                    automated = true
+                function morePPS() {
+                    if (value - upgradeAutoCost >= 0) {
+                        autoincr = autoincr + 3
+                        value = value - upgradeAutoCost
+                    }
+                }
+
+                function unlockAuto() {
+                    if(!automode && value - 500 >= 0) {
+                        automode = true
+                        value = value - 500
+                        document.getElementById("automate").innerHTML = `AUTOMATOR UNLOCKED`
+                    }
                 }
                 
-                setInterval(update, 33)
+                setInterval(update, 33.333)
              } 
         </script>
         <style>
-
+            
+            body {
+                background-color: rgba(145, 216, 230, 0.669);
+            }
                 /*style for button*/
 
             div {
@@ -75,6 +96,14 @@
                 font-family: 'Courier New', Courier, monospace;
             }
 
+            .pi {
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: aquamarine;
+                font-size: 20px;
+                color: burlywood;
+                width: auto;
+            }
+
                 /*normal param style*/
 
             p {
@@ -87,11 +116,13 @@
         <div id="btn">
             Click this
         </div>
-        <div id="upgrade">More Points Per Click, Cost:20 pts</div>
-        <div id="automate">Automator</div>
+        <div id="upgrade">More points per click, Cost:20 points</div>
+        <div id="auto-upgrade">More points per second, Cost:600 points</div>
+        <div id="automate">Automator, Cost:500 points</div>
         <p id="pts">You Have 0 Points</p>
         <p>My First Game</p>
-        <p>
+        <p class="pi">
+            Pi = 3.141592653589793238462643383279502884197169399375105820974944592307816406286208
         </p>
     </body>
 </html>
