@@ -35,9 +35,13 @@
                     //Updating
 
                 function update() {  //updates the html
-                    document.getElementById("upgrade").innerHTML = `More points per click, Cost:${Math.round(upgrade1cost)} pts`
-                    document.getElementById("auto-upgrade").innerHTML = `More points per second, Cost:${Math.round(upgradeAutoCost)} points`
-                    document.getElementById("pts").innerHTML = `You have ${Math.round(value)} points`
+                    upgrade1cost = Math.round(upgrade1cost)
+                    upgradeAutoCost = Math.round(upgradeAutoCost)
+                    value = Math.round(value)
+                    
+                    document.getElementById("upgrade").innerHTML = `More points per click, Cost:${upgrade1cost} pts`
+                    document.getElementById("auto-upgrade").innerHTML = `More points per second, Cost:${upgradeAutoCost} points`
+                    document.getElementById("pts").innerHTML = `You have ${value} points`
                     if (automode) {
                         value = value + autoincr/30
                     }
