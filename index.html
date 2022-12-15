@@ -74,6 +74,7 @@
                     if (value - upgradeAutoCost >= 0) {
                         autoIncr = autoIncr + 3
                         value = value - upgradeAutoCost
+                        upgradeAutoCost = Math.round(upgradeAutoCost * 1.25)
                     }
                 }
 
