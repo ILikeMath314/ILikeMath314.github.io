@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-16">
         <script>
 
                 //things to do when loaded
@@ -46,6 +46,8 @@
                     document.getElementById("auto-upgrade").innerHTML = `+1 points per second, Cost:${upgradeAutoCost} points`
                     document.getElementById("expoential").innerHTML = `x1.5 points per click, +3 points per second, Cost:${expoentUpgradeCost} points`
                     document.getElementById("pts").innerHTML = `You have ${value} points`
+                    document.getElementById("incr").innerHTML = `You     get ${incr} points per click`
+
                     if (automode) {
                         document.getElementById("pps").innerHTML = `You get ${autoIncr} points per second`
                     }
@@ -107,14 +109,23 @@
 
             .flex-container {
                 display: flex;
-                background-color: rgba(159, 166, 151, 0.541);
+                background-color: rgba(156, 179, 131, 0.541);
                 margin: 10px;
                 flex-direction: column;
-                border: 3px solid rgba(96, 101, 91, 0.813);
+                border: 3px solid rgba(96, 107, 89, 0.674);
                 height: fit-content;
                 width: fit-content;
             }
 
+            .row-flex-container {
+                display: flex;
+                background-color: rgba(187, 187, 187, 0.541);
+                margin: 10px;
+                flex-direction: row;
+                border: 3px solid rgba(96, 101, 91, 0.813);
+                height: fit-content;
+                width: fit-content;
+            }
             i.version {
                 font: Arial;
                 font-size: 16px;
@@ -149,28 +160,55 @@
                 font-family: 'Courier New', Courier, monospace;
             }
 
+            div.clik {
+                width: 280px;
+                height: 80px;
+                border: 5px solid rgba(98, 98, 98, 0.601);
+                border-radius: 6px;
+                background-color: rgb(141, 185, 169);
+                cursor: pointer;
+                padding-left: 30px;
+                padding-right: 30px;
+                padding-top: 30px;
+                padding-bottom: 20px;
+                font-size: 34px;
+                margin: 8px;
+                font-family: 'Courier New', Courier, monospace;
+            }
+
                 /*normal param style*/
 
             p {
                 font-family: Arial, Helvetica, sans-serif;
                 font-size: 30px;
+                size: auto auto;
             }
+
         </style>
     </head>
     <body>
-        <h1 class="header">Expoential Points <i class="version">v0.3 by someone</i></h1>
-        <div class="flex-container">
-            <div class="btn" id="btn">Click this</div>
-            <div class="btn" id="upgrade">+1 points per click, Cost:20 points</div>
-            <div class="btn" id="auto-upgrade">+1 points per second, Cost:500 points</div>
-            <div class="btn" id="automate">Automator, Cost:500 points</div>
-            <div class="btn" id="expoential">x1.5 points per click, +3 points per second, Cost:1400 points</div>
+        <h1 class="header">Expoential Points <i class="version">v0.3.2 by someone</i></h1>
+        <div class="row-flex-container">
+            <div class="flex-container">
+                <div class="btn" id="upgrade">+1 points per click, Cost:20 points</div>
+                <div class="btn" id="auto-upgrade">+1 points per second, Cost:500 points</div>
+                <div class="btn" id="automate">Automator, Cost:500 points</div>
+                <div class="btn" id="expoential">x1.5 points per click, +3 points per second, Cost:1200 points</div>
+            </div>
+            <div class="flex-container">
+                <div class="flex-container">
+                    <div class="clik" id="btn">
+                        Click this to get points
+                    </div>
+                </div>
+                <div class="flex-container">
+                    <p id="pts">You Have 0 Points</p>
+                    <p id="incr">You get 1 Points per click</p>
+                    <p id="pps">You get 0 points per second</p>
+                    <p>My First Game</p>
+                </div>
+            </div>
         </div>
-        <div class="flex-container">
-            <p id="pts">You Have 0 Points</p>
-            <p id="incr">You get 1 Points per click</p>
-            <p id="pps">You get 0 points per second</p>
-            <p>My First Game</p>
-        </div>
+        <p><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">點擊</a></p>
     </body>
 </html>
