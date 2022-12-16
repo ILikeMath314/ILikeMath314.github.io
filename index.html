@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html>
     <head>
-        <meta charset="utf-16">
+        <meta charset="utf-16i">
         <script>
 
                 //things to do when loaded
@@ -16,16 +16,19 @@
                 const automateBtn = document.getElementById("automate")
                 const autoUpgradeBtn = document.getElementById("auto-upgrade")
                 const expoentUpgradeBtn = document.getElementById("expoential")
+                const prestigeBtn = document.getElementById("prestige")
 
                     //game settings
 
                 var automode = false
-                var value = 0
+                var value = 8753472987589
                 var incr = 1
                 var autoIncr = 2
                 var upgrade1cost = 20
                 var upgradeAutoCost = 600 
                 var expoentUpgradeCost = 1200
+                var prestigeCost = 100000
+                var prestigeMult = 1
             
                     //event listener settings
 
@@ -34,6 +37,7 @@
                 automateBtn.addEventListener("click", unlockAuto)
                 autoUpgradeBtn.addEventListener("click", morePPS)
                 expoentUpgradeBtn.addEventListener("click", expoentUpgrade)
+                prestigeBtn.addEventListener("click", prestige)
                                            
                     //Updating
 
@@ -42,11 +46,13 @@
                     upgradeAutoCost = Math.round(upgradeAutoCost)
                     value = Math.round(value)
 
-                    document.getElementById("upgrade").innerHTML = `+1 points per click, Cost:${upgrade1cost} pts`
-                    document.getElementById("auto-upgrade").innerHTML = `+1 points per second, Cost:${upgradeAutoCost} points`
-                    document.getElementById("expoential").innerHTML = `x1.5 points per click, +3 points per second, Cost:${expoentUpgradeCost} points`
+                    upgrade1Btn.innerHTML = `+1 points per click, Cost:${upgrade1cost} pts`
+                    autoUpgradeBtn.innerHTML = `+1 points per second, Cost:${upgradeAutoCost} points`
+                    expoentUpgradeBtn.innerHTML = `x1.5 points per click, +3 points per second, Cost:${expoentUpgradeCost} points`
+                    prestigeBtn.innerHTML = `Prestige for ${prestigeCost} points`
                     document.getElementById("pts").innerHTML = `You have ${value} points`
-                    document.getElementById("incr").innerHTML = `You     get ${incr} points per click`
+                    document.getElementById("incr").innerHTML = `You get ${incr} points per click`
+                    document.getElementById("prestige-mult").innerHTML = `Prestige multiplier: x${prestigeMult}`
 
                     if (automode) {
                         document.getElementById("pps").innerHTML = `You get ${autoIncr} points per second`
@@ -55,14 +61,14 @@
 
                 function automateLoop() { //automator updating
                     if (automode) {
-                        value = value + autoIncr
+                        value = value + (autoIncr * prestigeMult)
                     }
                 }
 
                     //game functions
 
                 function add() {  //adds points
-                    value = value + incr
+                    value = value + (incr * prestigeMult)
                 }
                 function morePoints() {  //upgrade function
                     if (value - upgrade1cost >= 0) {
@@ -96,6 +102,18 @@
                         expoentUpgradeCost = expoentUpgradeCost * 2
                     }
                 }
+
+                function prestige() {
+                    var automode = false
+                    var value = 0
+                    var incr = 1
+                    var autoIncr = 2
+                    var upgrade1cost = 20
+                    var upgradeAutoCost = 600 
+                    var expoentUpgradeCost = 1200
+                    var prestigeCost = 100000 * (prestigeMult + 0.1)
+                    var prestigeMult = 1
+                }
                 
                 setInterval(update, 33.333)
                 setInterval(automateLoop, 1000)
@@ -119,13 +137,20 @@
 
             .row-flex-container {
                 display: flex;
-                background-color: rgba(187, 187, 187, 0.541);
-                margin: 10px;
+                background-color: rgba(187, 187, 187, 0.001);
+                margin: 1px;
                 flex-direction: row;
-                border: 3px solid rgba(96, 101, 91, 0.813);
+                border: 3px solid rgba(96, 101, 91, 0.13);
                 height: fit-content;
                 width: fit-content;
             }
+
+            .invisible {
+                background-color: rgba(0,0,0,0);
+                color: rgba(0,0,0,0);
+                border:3px solid rgba(96, 101, 91, 0.13)
+            }
+
             i.version {
                 font: Arial;
                 font-size: 16px;
@@ -187,7 +212,7 @@
         </style>
     </head>
     <body>
-        <h1 class="header">Expoential Points <i class="version">v0.3.2 by someone</i></h1>
+        <h1 class="header">Expoential Points <i class="version">v0.3.3 by someone</i></h1>
         <div class="row-flex-container">
             <div class="flex-container">
                 <div class="btn" id="upgrade">+1 points per click, Cost:20 points</div>
@@ -205,7 +230,11 @@
                     <p id="pts">You Have 0 Points</p>
                     <p id="incr">You get 1 Points per click</p>
                     <p id="pps">You get 0 points per second</p>
+                    <p id="prestige-mult">Prestige multiplier: x1</p>
                     <p>My First Game</p>
+                </div>
+                <div>
+                    <div class="btn" id="prestige">Prestige for 100000 points</div>
                 </div>
             </div>
         </div>
